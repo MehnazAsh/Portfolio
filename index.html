@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hey, I'm building stuff — Portfolio</title>
+<meta name="description" content="A quirky portfolio of prototypes, experiments, and things I'm tinkering with." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf9f1; --fg:#1a1730; --card:#ffffff; --muted:#6b6880;
+    --lime:#d6ff5c; --hot:#ff5a3c; --sky:#7cc7ff; --border:#1a1730;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--fg);
+    font-family:"Space Grotesk", system-ui, sans-serif;
+    background-image: radial-gradient(rgba(26,23,48,.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+    line-height:1.5;
+  }
+  .mono{font-family:"JetBrains Mono", ui-monospace, monospace}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 24px}
+  a{color:inherit}
+
+  /* NAV */
+  nav{display:flex; align-items:center; justify-content:space-between; padding:24px 0}
+  nav .links{display:flex; gap:18px; align-items:center; font-family:"JetBrains Mono",monospace; font-size:14px}
+  .btn{
+    display:inline-block; padding:8px 16px; border-radius:999px;
+    border:2px solid var(--border); background:var(--lime);
+    box-shadow:6px 6px 0 0 var(--border);
+    font-family:"JetBrains Mono",monospace; font-weight:600; text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translate(-3px,-3px); box-shadow:10px 10px 0 0 var(--border)}
+
+  /* HERO */
+  .hero{padding:40px 0 80px}
+  .kicker{font-family:"JetBrains Mono",monospace; font-size:12px; text-transform:uppercase; letter-spacing:.2em; color:var(--muted)}
+  h1{font-size:clamp(36px,6vw,72px); line-height:.98; letter-spacing:-.02em; margin:14px 0 0}
+  h1 .hl{background:var(--hot); color:#fff; padding:0 8px}
+  h1 .underline{font-style:italic; text-decoration:underline; text-decoration-color:var(--sky); text-decoration-thickness:8px; text-underline-offset:6px}
+  .lede{max-width:640px; color:var(--muted); font-size:18px; margin-top:22px}
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; font-family:"JetBrains Mono",monospace; font-size:14px}
+  .chip{border:2px solid var(--border); border-radius:999px; padding:4px 12px; background:var(--card)}
+  .chip.sky{background:var(--sky)} .chip.lime{background:var(--lime)}
+
+  /* DIVIDER */
+  .divider{display:flex; align-items:center; gap:16px; margin:8px 0}
+  .divider .line{flex:1; height:2px; background:var(--border)}
+  .divider .label{font-family:"JetBrains Mono",monospace; font-size:12px; text-transform:uppercase; letter-spacing:.2em}
+
+  /* GRID */
+  section.work{padding:60px 0}
+  .grid{display:grid; gap:32px; grid-template-columns:1fr}
+  @media(min-width:780px){ .grid{grid-template-columns:1fr 1fr} }
+  .card{
+    background:var(--card); border:2px solid var(--border); border-radius:18px;
+    box-shadow:6px 6px 0 0 var(--border); overflow:hidden;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{transform:translate(-3px,-3px); box-shadow:10px 10px 0 0 var(--border)}
+  .card:nth-child(odd){transform:rotate(-.4deg)}
+  .card:nth-child(even){transform:rotate(.4deg)}
+  .card:nth-child(odd):hover{transform:translate(-3px,-3px) rotate(-.4deg)}
+  .card:nth-child(even):hover{transform:translate(-3px,-3px) rotate(.4deg)}
+  .card img{display:block; width:100%; aspect-ratio:16/10; object-fit:cover; border-bottom:2px solid var(--border); background:#eee}
+  .card .body{padding:24px}
+  .card h2{margin:0; font-size:24px; letter-spacing:-.01em}
+  .card .row{display:flex; justify-content:space-between; align-items:center; gap:12px}
+  .card .num{font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--muted)}
+  .card p{color:var(--muted); margin:8px 0 0}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; font-family:"JetBrains Mono",monospace; font-size:12px}
+  .tag{border:2px solid var(--border); border-radius:999px; padding:2px 10px; background:var(--bg)}
+  .card .btn{margin-top:22px}
+
+  /* FOOTER */
+  footer{border-top:2px solid var(--border); background:var(--card); margin-top:60px}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; padding:24px; font-family:"JetBrains Mono",monospace; font-size:14px}
+  footer a{margin-left:14px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="mono" style="font-weight:600; text-decoration:none">Mehnaz</a>
+      <div class="links">
+        <a href="#work" style="text-decoration:none">work</a>
+        <a href="https://www.linkedin.com/in/mehnazashraf/" class="btn" target="_blank">say hi</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="top">
+      <div class="kicker">// portotypes.v1 — currently shipping</div>
+      <h1>
+        Hi, I'm <span class="hl">Mehnaz</span>.<br/>
+        I build <span class="underline">weird, useful</span> things on the internet.
+      </h1>
+      <p class="lede">
+        Designer / engineer / professional tab-hoarder. Below is a living scrapbook
+        of prototypes — half-baked ideas, polished demos, and everything in between.
+        Click around.
+      </p>
+      <div class="chips">
+        <span class="chip">📍 somewhere in Sydney</span>
+        <span class="chip sky">⚡ open to discussion and collaboration</span>
+        <span class="chip lime">🛠 4 prototypes & counting</span>
+      </div>
+    </section>
+
+    <div class="divider">
+      <div class="line"></div>
+      <span class="label">the prototypes</span>
+      <div class="line"></div>
+    </div>
+
+    <!-- ====================================================
+         EDIT YOUR PROTOTYPES BELOW
+         Copy a whole <article class="card">...</article> block
+         to add another one. Change image, title, text, link.
+         ==================================================== -->
+    <section class="work" id="work">
+      <div class="grid">
+
+        <article class="card">
+          <img src="https://images.unsplash.com/vector-1770724922473-c9c519bd3cdd?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800" alt="Prototype One" />
+          <div class="body">
+            <div class="row">
+              <h2>Geo Hop</h2>
+              <span class="num">#01</span>
+            </div>
+            <p>Lets you explore the earth virtually and share it.Type in your curiosity-e.g Places with tallest mountains</p>
+            <div class="tags"><span class="tag">gmp-map-3d</span><span class="tag">gemini-flash 2.5</span><span class="tag">vercel serverless</span></div>
+            <a class="btn" href="https://earth-explorer-one.vercel.app/explore.html" target="_blank" rel="noreferrer">View live →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800" alt="Prototype Two" />
+          <div class="body">
+            <div class="row">
+              <h2>Shareable social</h2>
+              <span class="num">#02</span>
+            </div>
+            <p>Networking? Share your details with one scan</p>
+            <div class="tags"><span class="tag">design</span><span class="tag">ux</span></div>
+            <a class="btn" href="https://sharablesocial.vercel.app/" target="_blank" rel="noreferrer">Try it →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://m.media-amazon.com/images/I/81J-2b+H0NL._SL1500_.jpg?w=800" alt="Prototype Three" />
+          <div class="body">
+            <div class="row">
+              <h2>Unruffled Mind: Memoir</h2>
+              <span class="num">#03</span>
+            </div>
+            <p>Peek into my childhood memoir</p>
+            <div class="tags"><span class="tag">hardware</span><span class="tag">iot</span></div>
+            <a class="btn" href="https://www.amazon.com.au/dp/8119510798" target="_blank" rel="noreferrer">Read it →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://plus.unsplash.com/premium_vector-1719620661096-2595019abfbf?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800" alt="Prototype Four" />
+          <div class="body">
+            <div class="row">
+              <h2>Hopscotch</h2>
+              <span class="num">#04</span>
+            </div>
+            <p>Are you a traveller and want to share an overview of your journey with your followers?</p>
+            <div class="tags"><span class="tag">data</span><span class="tag">viz</span></div>
+            <a class="btn" href="https://earth-explorer-one.vercel.app/index.html" target="_blank" rel="noreferrer">Create it →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="y"></span> Mehnaz— handcrafted with time , effort and lots of tea</span>
+      <div>
+        <a href="https://github.com">github</a>
+        <a href="https://twitter.com">twitter</a>
+        <a href="mailto:hello@example.com">email</a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
